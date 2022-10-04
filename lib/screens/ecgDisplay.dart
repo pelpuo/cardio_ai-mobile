@@ -128,8 +128,8 @@ class _EcgDisplayState extends State<EcgDisplay> {
                           edgeLabelPlacement: EdgeLabelPlacement.hide),
                       primaryYAxis: NumericAxis(
                           isVisible: false,
-                          minimum: 800,
-                          maximum: 1250,
+                          minimum: -20,
+                          maximum: 20,
                           interval: 5,
                           rangePadding: ChartRangePadding.additional,
                           axisLine: const AxisLine(color: Colors.black38),
@@ -142,7 +142,7 @@ class _EcgDisplayState extends State<EcgDisplay> {
                             y: 22,
                             coordinateUnit: CoordinateUnit.point,
                             widget: Container(
-                              child: Text(
+                              child: const Text(
                                 'High',
                                 style: TextStyle(fontSize: 14),
                               ),
@@ -154,18 +154,32 @@ class _EcgDisplayState extends State<EcgDisplay> {
                             coordinateUnit: CoordinateUnit.point,
                             widget: Container(
                               child: const Text(
-                                'low',
+                                '',
                                 style: TextStyle(fontSize: 14),
                               ),
                             ),
                             region: AnnotationRegion.chart)
                       ],
                       series: [
-                        LineSeries<dynamic, int>(
+                        LineSeries<dynamic, dynamic>(
                             dataSource: patientBase.ecgValues,
                             xValueMapper: (data, _) => _,
-                            yValueMapper: (data, _) => data["MLII"])
+                            yValueMapper: (data, _) => data["MLII"] * 10)
                       ]),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Text(
+                    "Prediction:",
+                    style: TextStyle(fontSize: 14, color: appColors.blue),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    patientBase.currentReading?.prediction ?? "Normal",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),

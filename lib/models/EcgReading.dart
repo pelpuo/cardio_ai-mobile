@@ -8,18 +8,19 @@ class EcgReading {
   final double limb;
   final double chest;
   final String createdAt;
+  final String prediction;
 
-  EcgReading({
-    required this.id,
-    required this.patientId,
-    required this.leadType,
-    required this.leadPlacement,
-    required this.hospitalName,
-    required this.speed,
-    required this.limb,
-    required this.chest,
-    required this.createdAt,
-  });
+  EcgReading(
+      {required this.id,
+      required this.patientId,
+      required this.leadType,
+      required this.leadPlacement,
+      required this.hospitalName,
+      required this.speed,
+      required this.limb,
+      required this.chest,
+      required this.createdAt,
+      required this.prediction});
 
   Map<String, dynamic> toJson() {
     return {
@@ -32,6 +33,7 @@ class EcgReading {
       'limb': limb,
       'chest': chest,
       'created_at': createdAt,
+      'prediction': prediction
     };
   }
 
@@ -44,5 +46,6 @@ class EcgReading {
         speed = json["speed"],
         limb = json["limb"],
         chest = json["chest"],
+        prediction = json["prediction"],
         createdAt = json["created_at"];
 }

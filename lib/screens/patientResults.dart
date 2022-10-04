@@ -233,7 +233,9 @@ class _PatientResultsState extends State<PatientResults> {
                                                               builder: (context) =>
                                                                   const EcgDisplay()));
                                                     },
-                                                    prediction: "Normal",
+                                                    prediction: patientBase
+                                                        .patientReadings[index]
+                                                        .prediction,
                                                     date: patientBase
                                                         .patientReadings[index]
                                                         .createdAt,
